@@ -1,0 +1,73 @@
+/* ----------- */
+/* Sponsors */
+/* On home page, set # of columns for sponsors */
+.sponsor-container {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+@media (min-width: 480px) {
+	.sponsor-container {
+		-webkit-column-count: 2; /* Chrome, Safari, Opera */
+		-moz-column-count: 2; /* Firefox */
+		column-count: 2;
+	}
+}
+@media (min-width: 768px) {
+	.sponsor-container {
+		-webkit-column-count: 3; /* Chrome, Safari, Opera */
+		-moz-column-count: 3; /* Firefox */
+		column-count: 3;
+	}
+}
+/* Colors on home page based on level of sponsorship */
+.sponsor-container a {
+	color:#000;
+}
+.sponsor-container .panel-sponsor-silver .panel-heading,
+.sponsor-container .panel-sponsor-silver a {
+	color:#fff;
+}
+.panel-default.panel-sponsor-platinum {
+	border-color:#eee;
+}
+.panel-default.panel-sponsor-gold {
+	border-color:#f4f4ba;
+}
+.panel-default.panel-sponsor-silver {
+	border-color:#ccc;
+}
+.panel-sponsor-platinum > div.panel-heading,
+.panel-sponsor-platinum > div.panel-footer {
+	background-color:#eee;
+	border:0;
+}
+.panel-sponsor-gold > div.panel-heading,
+.panel-sponsor-gold > div.panel-footer {
+	background-color:#f4f4ba;
+	border:0;
+}
+.panel-sponsor-silver > div.panel-heading,
+.panel-sponsor-silver > div.panel-footer {
+	background-color:#ccc;
+	border:0;
+}
+/* Makes blocks on home page not split partway through */
+.sponsor-container .panel {
+	display:inline-block;
+	width:100%;
+}
+/* Logo sizes on home page and catalog based on level of sponsorship */
+.sponsor-logo-col {
+	max-width: 100%;
+	height: auto;
+}
+.sponsor-logo-col.sponsor-platinum {
+	max-height: 300px;
+}
+.sponsor-logo-col.sponsor-gold {
+	max-height: 200px;
+}
+.sponsor-logo-col.sponsor-silver {
+	max-height: 100px;
+}
