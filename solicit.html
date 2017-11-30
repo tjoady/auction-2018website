@@ -12,8 +12,7 @@
     </script>
     <script src="http://listjs.com/assets/javascripts/list.min.js">
     </script>
-    <script src="js/solicit.js?v=20170117">
-    </script>
+    <!-- <script src="js/solicit.js?v=20170117"></script> //-->
     <script>
     </script>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +39,7 @@
                         <th>Item Donated</th>
                     </tr>
                     </thead>
-                    <tbody class="list"></tbody>
+                    <tbody class="list"><div style="margin:20px 0; text-align:center; font-size:4em;">Nov. 30, 2017: Coming soon</div></tbody>
                 </table>
             </div>
             <div class="wishlist-container" id="flt_wishlist" style="display:none;">
@@ -59,10 +58,10 @@
                         <th>Instructions, Contact Info</th>
                     </tr>
                     </thead>
-                    <tbody class="list"></tbody>
+                    <tbody class="list">Nov. 30, 2017: Coming soon!</tbody>
                 </table>
             </div>
-            <div class="loader"></div><a class="btn btn-default" href="#headernav_target">Back to top</a>
+<!--            <div class="loader"></div><a class="btn btn-default" href="#headernav_target">Back to top</a>-->
         </div>
         <div class="col-md-4">
             <h2>Letters and Forms</h2>
@@ -137,7 +136,13 @@
 </div>
 <div id="footer_target"></div>
 <script>
-        $( document ).ready(function() {            $("#headernav_target").load("ajax/headernav.html", function(){              $(".navbar-nav li").removeClass("active");              $("#nav_solicit,#nav_helpus").addClass("active");                       });         $("#footer_target").load("ajax/footer.html");       });
+        $( document ).ready(function() {
+            $("#headernav_target").load("ajax/headernav.html", function(){
+                $(".navbar-nav li").removeClass("active");
+                $("#nav_solicit,#nav_helpus").addClass("active");
+            });
+            $("#footer_target").load("ajax/footer.html");
+        });
   </script>
 </body>
 </html>
