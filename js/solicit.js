@@ -9,16 +9,14 @@ $(document).ready(function() { /* TRANSITION BETWEEN CONTACTED AND NOT CONTACTED
         $(".solicited-container").fadeIn("800", "swing");
         $(".wishlist-container").fadeOut("800", "swing");
     });
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1QuRdP03PkGoXAE9_Pwr4lpMPa1o8B-atcyOxmmg4z3k/2/public/full?alt=json', function(data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1sNJXzsSzy4g9jM5V7ujahbBggiOedVjBDRuRVVTZgAE/2/public/full?alt=json', function(data) {
         var count_solicited = 0;
         var count_wishlist = 0;
         $.each(data.feed.entry, function(i, v) {
             var status = v.gsx$status.$t;
-            var bizname = v.gsx$bizname.$t;
-            var contactmethod = v.gsx$contactmethod.$t;
-            var item = v.gsx$item.$t;
+            var bizname = v.gsx$profilename.$t;
+            var item = v.gsx$lastyrdonation.$t;
             var owner = v.gsx$owner.$t;
-            var instructions = v.gsx$instructions.$t;
             var row_style = "";
             /* SET COLOR AND STYLE OF ROW BASED ON STATUS */
             if (status === "Not donating" || status === "No response" || status === "Not taking requests" || status === "Ineligible/too late") {
@@ -36,15 +34,6 @@ $(document).ready(function() { /* TRANSITION BETWEEN CONTACTED AND NOT CONTACTED
             if (owner === "" || owner === "n/a") {
                 hidingowner = 'class="hidewhennarrow" ';
             }
-            /* IF NO INSTRUCTIONS, SET CLASS TO HIDE THAT TD IN TABLET SIZES AND BELOW */
-            /* ALSO WRITE OUT SNIPPET FOR INSTRUCTIONS TO SHOW IN POPOVER */
-            var hidinginstructions = "";
-            var instruction_snippet = "";
-            if (instructions === "" || instructions === "n/a") {
-                hidinginstructions = 'class="hidewhennarrow" ';
-            } else {
-                instruction_snippet = '<button type="button" class="btn btn-xs" data-toggle="popover" data-placement="top" title="Instructions or Contact Info" data-content="' + instructions + '">Show</button>';
-            }
             /* IF DONOR HAS BEEN CONTACTED, WRITE OUT ROW THAT SHOWS ITEM */
             /* IF DONOR HAS NOT BEEN CONTACTED, WRITE OUT ROW THAT FOCUSES ON HOW TO CONTACT */
             if (status != "Not yet contacted") {
@@ -54,7 +43,7 @@ $(document).ready(function() { /* TRANSITION BETWEEN CONTACTED AND NOT CONTACTED
                 $('#solicited tbody').append(rowcontentcontacted);
             } else if (status === "Not yet contacted") {
                 count_wishlist++;
-                var rowcontentnotcontacted = '<tr class="' + row_style + '"><td class="text-center">' + count_wishlist + '</td><td data-label="#' + count_wishlist + '" class="flt-name-wish">' + bizname + '</td><td ' + hidingowner + ' data-label="Owner" class="flt-owner">' + owner + '</td><td class="flt-contact nowrap" data-label="Best Contact Method">' + contactmethod + '</td><td ' + hidinginstructions + 'data-label="Instructions/Contact">' + instruction_snippet + '</td></tr>';
+                var rowcontentnotcontacted = '<tr class="' + row_style + '"><td class="text-center">' + count_wishlist + '</td><td data-label="#' + count_wishlist + '" class="flt-name-wish">' + bizname + '</td><td ' + hidingitem + 'data-label="Item Donated Last Year">' + item + '</td><td ' + hidingowner + ' data-label="Owner" class="flt-owner">' + owner + '</td></tr>';
                 $('#wishlist tbody').append(rowcontentnotcontacted);
             }
         });
