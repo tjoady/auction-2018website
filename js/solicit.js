@@ -20,7 +20,7 @@ $(document).ready(function() { /* TRANSITION BETWEEN CONTACTED AND NOT CONTACTED
             var owner = v.gsx$owner.$t;
             var row_style = "";
             /* SET COLOR AND STYLE OF ROW BASED ON STATUS */
-            if (status === "Not donating" || status === "No response" || status === "Not taking requests" || status === "Ineligible/too late") {
+            if (status === "Not donating" || status === "No response" || status === "Not taking requests" || status === "Ineligible" || status === "Too late") {
                 row_style = "negative";
             } else if (status === "Received" || status === "Donating" || status === "Might donate") {
                 row_style = "positive";
