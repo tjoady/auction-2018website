@@ -9,7 +9,8 @@ $(document).ready(function() { /* TRANSITION BETWEEN CONTACTED AND NOT CONTACTED
         $(".solicited-container").fadeIn("800", "swing");
         $(".wishlist-container").fadeOut("800", "swing");
     });
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1sNJXzsSzy4g9jM5V7ujahbBggiOedVjBDRuRVVTZgAE/1/public/full?alt=json', function(data) {
+    
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1XVqdKwWQt71YuA3oPQCKqzvjRv7eVn6iGaCmdMi-L1o/1/public/full?alt=json', function(data) {
         var count_solicited = 0;
         var count_wishlist = 0;
         $.each(data.feed.entry, function(i, v) {
@@ -17,12 +18,12 @@ $(document).ready(function() { /* TRANSITION BETWEEN CONTACTED AND NOT CONTACTED
             var bizname = v.gsx$profilename.$t;
             var item_thisyr = v.gsx$thisyrdonation.$t;
             var item_lastyr = v.gsx$lastyrdonation.$t;
-            var owner = v.gsx$owner.$t;
+            var owner = v.gsx$solicitor.$t;
             var row_style = "";
             /* SET COLOR AND STYLE OF ROW BASED ON STATUS */
-            if (status === "Not donating" || status === "No response" || status === "Not taking requests" || status === "Ineligible" || status === "Too late") {
+            if (status === "Not Donating" || status === "Not Reached") {
                 row_style = "negative";
-            } else if (status === "Received" || status === "Donating" || status === "Might donate") {
+            } else if (status === "Donated" || status === "Donation Received" || status === "Will Donate") {
                 row_style = "positive";
             }
             /* IF NO ITEM THIS YR, SET CLASS TO HIDE THAT TD IN TABLET SIZES AND BELOW */
@@ -42,7 +43,7 @@ $(document).ready(function() { /* TRANSITION BETWEEN CONTACTED AND NOT CONTACTED
             }
             /* IF DONOR HAS BEEN CONTACTED, WRITE OUT ROW THAT SHOWS ITEM */
             /* IF DONOR HAS NOT BEEN CONTACTED, WRITE OUT ROW THAT FOCUSES ON HOW TO CONTACT */
-            if (status != "Not yet contacted") {
+            if (status === "Contacted" || status === "Donated" || status === "Donation Received" || status === "Will Donate" || status === "Not Donating" || status === "Not Reached") {
                 count_solicited++;
                 var rowcontentcontacted = '<tr class="' + row_style + '"><td class="text-center">' + count_solicited + '</td><td data-label="#' + count_solicited + '" class="flt-name-sol">' + bizname + '</td><td class="nowrap flt-status" data-label="Status">' + status + '</td><td ' + hidingitem_thisyr + 'data-label="Item(s) Donated or Requested">' + item_thisyr + '</td></tr>';
 
